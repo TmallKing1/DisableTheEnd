@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "disable-the-end",
+  "version": "${version}",
+  "name": "DisableTheEnd",
+  "description": "",
+  "authors": [
+    "xiaozhu_zhizui"
+  ],
+  "contact": {
+    "website": "https://www.pigest.top",
+    "repo": "https://github.com/TmallKing1/DisableTheEnd"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "server": [
+      "top.pigest.disabletheend.DisableTheEnd"
+    ]
+  },
+  "mixins": [
+    "disable-the-end.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "fabric": "*",
+    "minecraft": "1.19.4"
+  }
+}

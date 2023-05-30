@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "top.pigest.disabletheend.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "EndPortalBlockMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
