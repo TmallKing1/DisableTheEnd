@@ -4,7 +4,8 @@
   "package": "top.pigest.disabletheend.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EndPortalBlockMixin"
+    "EndPortalBlockMixin",
+    "LivingEntityMixin"
   ],
   "client": [
   ],
