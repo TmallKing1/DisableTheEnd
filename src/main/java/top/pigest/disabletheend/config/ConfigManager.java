@@ -10,21 +10,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ConfigManager {
-    public static Path CONFIG_FOLDER;
+    public static Path DISABLE_THE_END_CONFIG_FOLDER;
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     public static DisableTheEndConfig getDisableTheEndConfig() {
         DisableTheEndConfig config = new DisableTheEndConfig();
 
-        if (!CONFIG_FOLDER.toFile().isDirectory()) {
+        if (!DISABLE_THE_END_CONFIG_FOLDER.toFile().isDirectory()) {
             try {
-                Files.createDirectories(CONFIG_FOLDER);
+                Files.createDirectories(DISABLE_THE_END_CONFIG_FOLDER);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        Path configPath = CONFIG_FOLDER.resolve(DisableTheEndConfig.CONFIG_NAME + ".json");
+        Path configPath = DISABLE_THE_END_CONFIG_FOLDER.resolve(DisableTheEndConfig.CONFIG_NAME + ".json");
         if (configPath.toFile().isFile()) {
             try {
                 config = GSON.fromJson(FileUtils.readFileToString(configPath.toFile(), StandardCharsets.UTF_8),
@@ -44,14 +44,14 @@ public class ConfigManager {
     }
 
     public static void saveDisableTheEndConfig(DisableTheEndConfig config) {
-        if (!CONFIG_FOLDER.toFile().isDirectory()) {
+        if (!DISABLE_THE_END_CONFIG_FOLDER.toFile().isDirectory()) {
             try {
-                Files.createDirectories(CONFIG_FOLDER);
+                Files.createDirectories(DISABLE_THE_END_CONFIG_FOLDER);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        Path configPath = CONFIG_FOLDER.resolve(DisableTheEndConfig.CONFIG_NAME + ".json");
+        Path configPath = DISABLE_THE_END_CONFIG_FOLDER.resolve(DisableTheEndConfig.CONFIG_NAME + ".json");
         try {
             FileUtils.write(configPath.toFile(), GSON.toJson(config), StandardCharsets.UTF_8);
         } catch (IOException e) {

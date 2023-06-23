@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import top.pigest.disabletheend.DisableTheEnd;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity{
@@ -22,5 +23,8 @@ public abstract class LivingEntityMixin extends Entity{
      */
     @Redirect(method = "onDeath",at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;info(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V"))
     private void onDeath(Logger instance, String s, Object o, Object object) {
+        if(!DisableTheEnd.getConfig().isDisableNamedEntityLog()) {
+            instance.info(s, o, object);
+        }
     }
 }

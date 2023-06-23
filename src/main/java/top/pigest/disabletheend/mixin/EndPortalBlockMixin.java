@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import top.pigest.disabletheend.DisableTheEnd;
 
 @Mixin(EndPortalBlock.class)
 public class EndPortalBlockMixin {
@@ -19,6 +20,8 @@ public class EndPortalBlockMixin {
      */
     @Inject(method = "onEntityCollision",at = @At("HEAD"), cancellable = true)
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
-        ci.cancel();
+        if(DisableTheEnd.getConfig().isDisableEndPortal()) {
+            ci.cancel();
+        }
     }
 }

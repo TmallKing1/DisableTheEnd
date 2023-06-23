@@ -6,7 +6,9 @@
   "mixins": [
     "EndPortalBlockMixin",
     "LivingEntityMixin",
-    "PlayerManagerMixin"
+    "MinecraftServerMixin",
+    "PlayerManagerMixin",
+    "ServerPlayNetworkHandlerMixin"
   ],
   "client": [
   ],
