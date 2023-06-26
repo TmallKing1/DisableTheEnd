@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Date;
 
 public class MuteCommand {
+
     private static final SimpleCommandExceptionType TIME_FORMAT_EXCEPTION = new SimpleCommandExceptionType(Text.literal("指定的时间不符合规范"));
     private static final SimpleCommandExceptionType ALREADY_MUTED_EXCEPTION = new SimpleCommandExceptionType(Text.literal("指定的玩家均已被禁言"));
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {

@@ -19,9 +19,7 @@ public class ServerPlayNetworkHandlerMixin {
     @Inject(method = "onChatMessage",at = @At(value = "HEAD"), cancellable = true)
     private void onChatMessage(ChatMessageC2SPacket packet, CallbackInfo ci) {
         if(Mute.isMutedWithExpiry(this.player.getGameProfile())) {
-            player.sendMessage(Text.literal("你已被禁言")
-                    .append(Mute.getMuteReason(player.getGameProfile()) == null ? Text.empty() : Text.literal("，原因：" + Mute.getMuteReason(player.getGameProfile())))
-                    .append(Mute.getMuteRemainingSeconds(player.getGameProfile()) == -1 ? Text.empty() : Text.literal("，将在" + TimeUtil.formatTime(Mute.getMuteRemainingSeconds(player.getGameProfile())) + "后解禁")));
+            Mute.sendMuteMessage(player);
             ci.cancel();
         }
     }

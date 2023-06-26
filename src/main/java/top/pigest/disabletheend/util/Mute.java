@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.authlib.GameProfile;
 import com.mojang.logging.LogUtils;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import org.apache.commons.io.FileUtils;
 import top.pigest.disabletheend.config.MuteList;
 
@@ -112,5 +114,11 @@ public class Mute {
             return (int) (((Date.parse(muteEntry.getExpiry()) - 1000 * 60 * 60 * 14) - System.currentTimeMillis()) / 1000);
         }
         return -1;
+    }
+
+    public static void sendMuteMessage(ServerPlayerEntity player) {
+        player.sendMessage(Text.literal("你已被禁言")
+                .append(Mute.getMuteReason(player.getGameProfile()) == null ? Text.empty() : Text.literal("，原因：" + Mute.getMuteReason(player.getGameProfile())))
+                .append(Mute.getMuteRemainingSeconds(player.getGameProfile()) == -1 ? Text.empty() : Text.literal("，将在" + TimeUtil.formatTime(Mute.getMuteRemainingSeconds(player.getGameProfile())) + "后解禁")));
     }
 }
